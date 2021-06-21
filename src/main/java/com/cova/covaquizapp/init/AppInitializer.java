@@ -19,11 +19,6 @@ public class AppInitializer implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
         Role role;
-        if(roleRepository.findByName(ERole.ROLE_ADMIN).isEmpty()) {
-            role = new Role();
-            role.setName(ERole.ROLE_ADMIN);
-            roleRepository.save(role);
-        }
 
         if(roleRepository.findByName(ERole.ROLE_USER).isEmpty()) {
             role = new Role();

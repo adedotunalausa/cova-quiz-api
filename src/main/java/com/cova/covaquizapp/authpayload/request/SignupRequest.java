@@ -5,36 +5,29 @@ import lombok.Data;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Set;
 
 @Data
 public class SignupRequest {
-    @NotBlank
+    @NotBlank(message = "username cannot be empty")
     @Size(min = 3, max = 20)
     private String username;
 
-    @NotBlank
+    @NotBlank(message = "firstname cannot be empty")
     private String firstname;
 
-    @NotBlank
+    @NotBlank(message = "lastname cannot be empty")
     private String lastname;
 
-    @NotBlank
+    @NotBlank(message = "gender cannot be empty")
     private String gender;
 
-    @NotBlank
+    @NotBlank(message = "email cannot be empty")
     @Size(max = 50)
-    @Email
+    @Email(message = "must be email")
     private String email;
 
-    private Set<String> role;
-
-    @NotBlank
-    @Size(min = 6, max = 40)
+    @NotBlank(message = "password cannot be empty")
+    @Size(min = 6, max = 24)
     private String password;
 
-
-    public Set<String> getRole() {
-        return this.role;
-    }
 }
