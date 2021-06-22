@@ -1,9 +1,10 @@
 package com.cova.covaquizapp.service;
 
-import com.cova.covaquizapp.model.Question;
-
-import java.util.List;
+import com.cova.covaquizapp.dto.AnswerCollectionDTO;
+import com.cova.covaquizapp.dto.QuestionCollectionDTO;
+import com.cova.covaquizapp.dto.ResultDTO;
 
 public interface QuizService {
-    List<Question> getAllQuestions();
+    QuestionCollectionDTO getAllQuestions();
+    ResultDTO getResult(AnswerCollectionDTO answers, String email);
 }

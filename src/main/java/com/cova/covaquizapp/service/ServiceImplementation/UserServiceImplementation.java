@@ -1,6 +1,7 @@
 package com.cova.covaquizapp.service.ServiceImplementation;
 
 import com.cova.covaquizapp.authpayload.request.SignupRequest;
+import com.cova.covaquizapp.exception.ResourceNotFoundException;
 import com.cova.covaquizapp.model.User;
 import com.cova.covaquizapp.repository.UserRepository;
 import com.cova.covaquizapp.service.UserService;
@@ -32,6 +33,15 @@ public class UserServiceImplementation implements UserService {
     @Override
     public void saveUser(User user) {
         userRepository.save(user);
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(
+                () -> {
+                    throw new ResourceNotFoundException("User not found!");
+                }
+        );
     }
 
 }

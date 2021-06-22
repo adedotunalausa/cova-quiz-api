@@ -17,5 +17,5 @@ import javax.persistence.Table;
 public class Result extends BaseModel{
 
     private String username;
-    private int totalCorrect = 0;
+    private int totalCorrectAnswers = 0;
 }

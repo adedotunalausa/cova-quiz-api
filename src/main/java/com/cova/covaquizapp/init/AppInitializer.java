@@ -55,6 +55,22 @@ public class AppInitializer implements ApplicationRunner {
             question.setOptionC("/* This is a comment");
             question.setAnswer(2);
             questionRepository.save(question);
+
+            question = new Question();
+            question.setTitle("Which data type is used to create a variable that should store text?");
+            question.setOptionA("String");
+            question.setOptionB("Char");
+            question.setOptionC("Both");
+            question.setAnswer(1);
+            questionRepository.save(question);
+
+            question = new Question();
+            question.setTitle("How do you create a variable with the numeric value 5");
+            question.setOptionA("num x = 5");
+            question.setOptionB("float x = 5");
+            question.setOptionC("int x = 5");
+            question.setAnswer(3);
+            questionRepository.save(question);
         }
     }
 }
