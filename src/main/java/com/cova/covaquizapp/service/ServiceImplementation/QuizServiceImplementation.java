@@ -6,11 +6,14 @@ import com.cova.covaquizapp.dto.QuestionCollectionDTO;
 import com.cova.covaquizapp.dto.ResultDTO;
 import com.cova.covaquizapp.exception.ResourceNotFoundException;
 import com.cova.covaquizapp.model.Question;
+import com.cova.covaquizapp.model.Result;
 import com.cova.covaquizapp.model.User;
 import com.cova.covaquizapp.repository.QuestionRepository;
+import com.cova.covaquizapp.repository.ResultRepository;
 import com.cova.covaquizapp.service.QuizService;
 import com.cova.covaquizapp.service.UserService;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,7 +25,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 @AllArgsConstructor
 public class QuizServiceImplementation implements QuizService {
 
+    private final ModelMapper modelMapper;
     private final UserService userService;
+    private final ResultRepository resultRepository;
     private final QuestionRepository questionRepository;
     private final QuestionCollectionDTO questionCollectionDTO;
 
@@ -51,12 +56,13 @@ public class QuizServiceImplementation implements QuizService {
 
         int correctAnswers = getCorrectAnswers(answers.getAnswers());
 
-        return new ResultDTO(
-                currentUser.getUsername(),
-                currentUser.getEmail(),
-                answers.getAnswers().size(),
-                correctAnswers
-        );
+        ResultDTO resultDTO = new ResultDTO(currentUser.getUsername(), currentUser.getEmail(),
+                answers.getAnswers().size(), correctAnswers);
+
+        Result result = modelMapper.map(resultDTO, Result.class);
+        resultRepository.save(result);
+
+        return resultDTO;
     }
 
     private int getCorrectAnswers(List<AnswerDTO> answers) {
