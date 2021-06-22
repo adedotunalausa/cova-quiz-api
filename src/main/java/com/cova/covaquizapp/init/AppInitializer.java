@@ -1,5 +1,6 @@
 package com.cova.covaquizapp.init;
 
+import com.cova.covaquizapp.dto.RoleDTO;
 import com.cova.covaquizapp.enums.ERole;
 import com.cova.covaquizapp.model.Question;
 import com.cova.covaquizapp.model.Role;
@@ -7,6 +8,7 @@ import com.cova.covaquizapp.repository.QuestionRepository;
 import com.cova.covaquizapp.repository.RoleRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -20,14 +22,15 @@ public class AppInitializer implements ApplicationRunner {
 
     private final QuestionRepository questionRepository;
 
+    private final ModelMapper modelMapper;
+
     @Override
     public void run(ApplicationArguments args) {
         Role role;
         Question question;
 
         if(roleRepository.findByName(ERole.ROLE_USER).isEmpty()) {
-            role = new Role();
-            role.setName(ERole.ROLE_USER);
+            role = modelMapper.map(new RoleDTO(ERole.ROLE_USER), Role.class);
             roleRepository.save(role);
         }
 
