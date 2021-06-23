@@ -1,6 +1,5 @@
 package com.cova.covaquizapp.service.ServiceImplementation;
 
-import com.cova.covaquizapp.dto.AnswerCollectionDTO;
 import com.cova.covaquizapp.dto.AnswerDTO;
 import com.cova.covaquizapp.dto.QuestionCollectionDTO;
 import com.cova.covaquizapp.dto.ResultDTO;
@@ -47,14 +46,14 @@ public class QuizServiceImplementation implements QuizService {
     }
 
     @Override
-    public ResultDTO getResult(AnswerCollectionDTO answers, String email) {
+    public ResultDTO getResult(List<AnswerDTO> answers, String email) {
 
         User currentUser = userService.findUserByEmail(email);
 
-        int correctAnswers = getCorrectAnswers(answers.getAnswers());
+        int correctAnswers = getCorrectAnswers(answers);
 
         ResultDTO resultDTO = new ResultDTO(currentUser.getUsername(), currentUser.getEmail(),
-                answers.getAnswers().size(), correctAnswers);
+                answers.size(), correctAnswers);
 
         Result result = modelMapper.map(resultDTO, Result.class);
         resultRepository.save(result);

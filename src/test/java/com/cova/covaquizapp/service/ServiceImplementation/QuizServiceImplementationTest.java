@@ -1,7 +1,6 @@
 package com.cova.covaquizapp.service.ServiceImplementation;
 
 import com.cova.covaquizapp.authpayload.request.SignupRequest;
-import com.cova.covaquizapp.dto.AnswerCollectionDTO;
 import com.cova.covaquizapp.dto.AnswerDTO;
 import com.cova.covaquizapp.exception.ResourceNotFoundException;
 import com.cova.covaquizapp.model.Question;
@@ -81,11 +80,9 @@ class QuizServiceImplementationTest {
         List<AnswerDTO> answers = new ArrayList<>();
         answers.add(answer1);
         answers.add(answer2);
-        AnswerCollectionDTO answerCollectionDTO = new AnswerCollectionDTO();
-        answerCollectionDTO.setAnswers(answers);
 
         // when
-        quizServiceImplementationUnderTest.getResult(answerCollectionDTO, "adedotunalausa@gmail.com");
+        quizServiceImplementationUnderTest.getResult(answers, "adedotunalausa@gmail.com");
 
         // then
         verify(questionRepository).findById(2L);
