@@ -43,23 +43,6 @@ class QuizServiceImplementationTest {
     }
 
     @Test
-    void canGetAllQuestions() {
-        Question question = new Question();
-        question.setTitle("Test title");
-        question.setOptionA("Test Option A");
-        question.setOptionB("Test Option B");
-        question.setOptionC("Test Option C");
-        question.setAnswer(2);
-        List<Question> allQuestions = new ArrayList<>();
-        allQuestions.add(question);
-        given(questionRepository.findAll()).willReturn(allQuestions);
-
-        quizServiceImplementationUnderTest.getAllQuestions();
-
-        verify(questionRepository).findAll();
-    }
-
-    @Test
     void canGetUserResult() {
         // given
         User user = modelMapper.map(new SignupRequest("demarxes", "Adedotun", "Alausa",
