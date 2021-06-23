@@ -18,7 +18,7 @@ public class UserServiceImplementation implements UserService {
     private final PasswordEncoder encoder;
 
     @Override
-    public User registration(SignupRequest signupRequest) {
+    public User preRegisterUser(SignupRequest signupRequest) {
 
         return new User(
                 signupRequest.getUsername(),
@@ -31,7 +31,7 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public void saveUser(User user) {
+    public void registerUser(User user) {
         userRepository.save(user);
     }
 

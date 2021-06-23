@@ -30,6 +30,7 @@ public class QuizController {
     }
 
     @PostMapping("/submit")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<ResultDTO> submitAndGetResult(HttpServletRequest request,
                                                         @RequestBody AnswerCollectionDTO answers) {
         String jwt = MethodUtils.parseJwt(request);

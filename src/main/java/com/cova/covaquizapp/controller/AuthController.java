@@ -75,14 +75,14 @@ public class AuthController {
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
 
-        User user = userService.registration(signUpRequest);
+        User user = userService.preRegisterUser(signUpRequest);
 
         Set<Role> roles = new HashSet<>();
         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
         roles.add(userRole);
         user.setRoles(roles);
-        userService.saveUser(user);
+        userService.registerUser(user);
 
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setEmail(signUpRequest.getEmail());

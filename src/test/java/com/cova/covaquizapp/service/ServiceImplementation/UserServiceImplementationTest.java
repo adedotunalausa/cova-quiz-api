@@ -36,13 +36,13 @@ class UserServiceImplementationTest {
     }
 
     @Test
-    void registration() {
+    void canPreRegisterUser() {
         // given
         SignupRequest signupRequest = new SignupRequest("demarxes", "Adedotun", "Alausa",
                 "Male", "adedotunalausa@gmail.com", "123456");
 
         // when
-        User user = userServiceImplementationUnderTest.registration(signupRequest);
+        User user = userServiceImplementationUnderTest.preRegisterUser(signupRequest);
 
         // then
         assertThat(user).isNotNull();
@@ -50,14 +50,14 @@ class UserServiceImplementationTest {
     }
 
     @Test
-    void canSaveUser() {
+    void canRegisterUser() {
         // given
         User user = modelMapper.map(new SignupRequest("demarxes", "Adedotun", "Alausa",
                 "Male", "adedotunalausa@gmail.com", "123456"), User.class);
         given(userRepository.save(user)).willReturn(user);
 
         // when
-        userServiceImplementationUnderTest.saveUser(user);
+        userServiceImplementationUnderTest.registerUser(user);
 
         // then
         verify(userRepository).save(user);

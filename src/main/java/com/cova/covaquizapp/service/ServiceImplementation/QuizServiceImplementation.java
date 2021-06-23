@@ -29,7 +29,6 @@ public class QuizServiceImplementation implements QuizService {
     private final UserService userService;
     private final ResultRepository resultRepository;
     private final QuestionRepository questionRepository;
-    private final QuestionCollectionDTO questionCollectionDTO;
 
     @Override
     public QuestionCollectionDTO getAllQuestions() {
@@ -38,15 +37,13 @@ public class QuizServiceImplementation implements QuizService {
 
         Random random = new Random();
 
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 10; i++) {
             int rand = random.nextInt(allQuestions.size());
             questionList.add(allQuestions.get(rand));
             allQuestions.remove(rand);
         }
 
-        questionCollectionDTO.setQuestions(questionList);
-
-        return questionCollectionDTO;
+        return new QuestionCollectionDTO(questionList);
     }
 
     @Override
@@ -79,7 +76,8 @@ public class QuizServiceImplementation implements QuizService {
         return correctAnswers.get();
     }
 
-    private Question getQuestionById(Long id) {
+    @Override
+    public Question getQuestionById(Long id) {
         return questionRepository.findById(id).orElseThrow(
                 () -> {
                     throw new ResourceNotFoundException("Question not found!");

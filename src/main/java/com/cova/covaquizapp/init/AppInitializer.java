@@ -74,6 +74,46 @@ public class AppInitializer implements ApplicationRunner {
             question.setOptionC("int x = 5");
             question.setAnswer(3);
             questionRepository.save(question);
+
+            question = new Question();
+            question.setTitle("How do you create a variable with the floating number 2.8?");
+            question.setOptionA("num x = 2.8");
+            question.setOptionB("float x = 2.8");
+            question.setOptionC("int x = 2.8");
+            question.setAnswer(2);
+            questionRepository.save(question);
+
+            question = new Question();
+            question.setTitle("Which method can be used to find the length of a string?");
+            question.setOptionA("length()");
+            question.setOptionB("getSize()");
+            question.setOptionC("size()");
+            question.setAnswer(1);
+            questionRepository.save(question);
+
+            question = new Question();
+            question.setTitle("Which operator is used to add together two values?");
+            question.setOptionA("&&");
+            question.setOptionB(".add()");
+            question.setOptionC("+");
+            question.setAnswer(3);
+            questionRepository.save(question);
+
+            question = new Question();
+            question.setTitle("The value of a string variable can be surrounded by single quotes.");
+            question.setOptionA("True");
+            question.setOptionB("False");
+            question.setOptionC("Maybe");
+            question.setAnswer(2);
+            questionRepository.save(question);
+
+            question = new Question();
+            question.setTitle("Which operator can be used to compare two values?");
+            question.setOptionA("><");
+            question.setOptionB("&|");
+            question.setOptionC("==");
+            question.setAnswer(3);
+            questionRepository.save(question);
         }
     }
 }
