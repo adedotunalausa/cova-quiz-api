@@ -44,6 +44,7 @@ public class QuizServiceImplementation implements QuizService {
             allQuestions.remove(rand);
         }
         log.debug("Debugging....");
+        log.debug("Debugging again....");
 
         return new QuestionCollectionDTO(questionList);
     }
