@@ -12,6 +12,7 @@ import com.cova.covaquizapp.repository.ResultRepository;
 import com.cova.covaquizapp.service.QuizService;
 import com.cova.covaquizapp.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class QuizServiceImplementation implements QuizService {
@@ -41,6 +43,7 @@ public class QuizServiceImplementation implements QuizService {
             questionList.add(allQuestions.get(rand));
             allQuestions.remove(rand);
         }
+        log.debug("Debugging....");
 
         return new QuestionCollectionDTO(questionList);
     }
