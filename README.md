@@ -1,13 +1,19 @@
 # Cova Quiz App
 
-This rest api contains endpoints necessary for a user to signup/login, take a quiz and get quiz result in the cova quiz application.
+This rest api contains requests necessary for a user to signup/login and make other requests as listed below in the wizer library application.
 
-The following requests can be made
+It contains the following requests
 
 - Register a user
 - Login a user
-- Get quiz questions
-- Submit answers and get result
+- Add a category
+- Update a category
+- Get all categories
+- Add a book
+- Update a book
+- A a book to a category
+- Add a book to favorite
+- Get all books
 
 ## Build
 
